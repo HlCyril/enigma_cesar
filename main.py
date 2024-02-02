@@ -3,12 +3,21 @@ import string
 print("Ce programme va crypter vos phrases avec la méthode du cryptage de César")
 
 # On récupère la clef de cryptage
-cesar = int(input("Donnez une nombre entier comme clef de cryptage"))
+cesar = int(input("Donnez une nombre entier comme clef de cryptage: "))
+#cesar = 2
 clef = [1,2,1]
 alphabet = list(string.ascii_lowercase)
 
 liste_txt = mod.lire_fichier("phrases.txt")
 print(liste_txt)
+
+liste_txt = mod.modifier_caracteres_speciaux(liste_txt)
+
+liste_txt = mod.liste(liste_txt)
+print(liste_txt)
+
+
+
 liste_txt = mod.enlever_accents(liste_txt)
 print(liste_txt)
 liste_txt = mod.liste(liste_txt)
