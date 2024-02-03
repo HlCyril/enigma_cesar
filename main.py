@@ -67,6 +67,7 @@ elif choix_utilisateur == 4:
 
     #Decryptage du texte crypté avec la méthode Enigma César
     clef_enigma_decrypte = [-i for i in clef_enigma]
+    print(clef_enigma)
     texte_decrypte_enigma = []
 
     for mot in texte_crypte_enigma:

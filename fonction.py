@@ -1,5 +1,6 @@
 import string
 
+
 def lire_fichier(fichier_txt):
     # Lire le fichier .txt 
     with open(fichier_txt, 'r', encoding='utf-8') as fichier:
@@ -26,11 +27,13 @@ def modifier_caracteres_speciaux(mot, caracteres_speciaux='àâèéêëôîïû�
     # Retourner le mot sans caractères spéciaux
     return mot
 
+
 # Séparer les mots en items d'une liste
 def separer_mot_en_item_liste(contenu):
 
     # séparation à chaque espace
     return contenu.split(' ')
+
 
 # Modifier les majuscules
 def modifier_majuscules(liste_mots):
@@ -38,6 +41,7 @@ def modifier_majuscules(liste_mots):
     for chaque_mot in liste_mots:
         liste_sans_majuscule.append(chaque_mot.lower())
     return liste_sans_majuscule
+
 
 # Créer une liste avec comme item chaque mot sans caractère spécial et sans majuscule
 def creer_liste_de_chaque_mot(fichier_texte):
@@ -57,7 +61,7 @@ def creer_liste_de_chaque_mot(fichier_texte):
 
 
 # Crypter avec la méthode de César
-def cryptage_cesar(mot, clef, alphabet = list(string.ascii_lowercase)):
+def cryptage_cesar(mot, clef, alphabet=list(string.ascii_lowercase)):
     #
     mot_crypte = []
     for caractere in mot:
@@ -69,7 +73,7 @@ def cryptage_cesar(mot, clef, alphabet = list(string.ascii_lowercase)):
     return ''.join(mot_crypte)
 
 
-def cryptage_enigma_cesar(mot, clef, alphabet = list(string.ascii_lowercase)):
+def cryptage_enigma_cesar(mot, clef, alphabet=list(string.ascii_lowercase)):
     mot_crypte = []
     indice = 0
     for caractere in mot:
@@ -80,3 +84,18 @@ def cryptage_enigma_cesar(mot, clef, alphabet = list(string.ascii_lowercase)):
         else:
             mot_crypte.append(caractere)
     return ''.join(mot_crypte)
+
+
+# J'ai ajouté ces deux fonctions pour le décryptage
+def clef_potentielle(texte_crypte, lettre_alphabet, alphabet=list(string.ascii_lowercase)):
+    for mot in texte_crypte:
+        for caractere in mot:
+            if caractere in alphabet:
+                return abs(alphabet.index(lettre_alphabet)-alphabet.index(caractere))
+
+
+def mot(fichier_txt):
+    with open(fichier_txt, 'r', encoding='utf-8') as fichier:
+        lignes = fichier.readlines()
+        liste_mots = [mot.strip() for mot in lignes]
+    return liste_mots
