@@ -108,11 +108,6 @@ def trouver_premier_3_lettres(texte, alphabet):
                 return mot
 
 
-def clef_potentielle_v2(caractere, lettre_alphabet, alphabet=list(string.ascii_lowercase)):
-    if caractere in alphabet:
-        return abs(alphabet.index(lettre_alphabet)-alphabet.index(caractere))
-
-
 def mots_en_communs(texte_crypte, base_de_donnee):
     mots_communs = set(texte_crypte) & set(base_de_donnee)
     return len(mots_communs)
