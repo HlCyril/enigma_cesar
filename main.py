@@ -18,7 +18,7 @@ if choix_utilisateur == 1:
     # Lecture du fichier 'texte.txt'
     texte_original = fonction.creer_liste_de_chaque_mot('texte.txt')
 
-    # Créarion d'une liste pour le texte crypté
+    # Création d'une liste pour le texte crypté
     texte_crypte = []
 
     # Cryptage avec la méthode de César
@@ -35,7 +35,7 @@ elif choix_utilisateur == 2:
     clef_enigma = list(map(lambda x: int(x), clef_enigma.split(',')))
 
     # Lecture du fichier 'texte.txt'
-    texte_original = fonction.creer_liste_de_chaque_mot('texte_facile.txt')
+    texte_original = fonction.creer_liste_de_chaque_mot('texte.txt')
 
     # Cryptage avec la méthode Enigma César
     texte_crypte_enigma = []
@@ -56,7 +56,7 @@ elif choix_utilisateur == 3:
     texte_decrypte = []
 
     for mot in texte_crypte:
-        # il suffit de prendre l'opposé de la clé: ici - césar
+        # il suffit de prendre l'opposé de la clé : ici - césar
         texte_decrypte.append(fonction.cryptage_cesar(mot, - clef_cesar))
     
     print('\n Texte crypté :\n', ' '.join(texte_crypte), "\n")
