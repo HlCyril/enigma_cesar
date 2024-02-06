@@ -36,24 +36,29 @@ Choisir choix:
  "2": Cryptage avec la méthode Enigma-César,
  "3": Décryptage avec la méthode César,
  "4": Décryptage avec la méthode Enigma-César,
- 1
+ "5": Décryptage par force brute avec la méthode de César.
+ "6": Décryptage par force brute avec la méthode Enigma-César.
 
-Donnez une nombre entier comme clef de cryptage: 3
+Donnez une nombre entier comme clef de cryptage: "3" par exemple
 ```
 
-## Options de Cryptage et de Décryptage
+## 5. Options de Cryptage et de Décryptage
 
 Le script propose les options suivantes :
 
-- **Cryptage avec la méthode de César** : Vous pouvez crypter du texte en utilisant la méthode de César en spécifiant une clé de cryptage sous forme d'un entier.
+- **`Cryptage avec la méthode de César`** : Vous pouvez crypter du texte en utilisant la méthode de César en spécifiant une clé de cryptage sous forme d'un entier.
 
-- **Cryptage avec la méthode Enigma-César** : Vous pouvez crypter du texte en utilisant la méthode Enigma-César en spécifiant une clé de cryptage sous forme d'une liste d'entiers.
+- **`Cryptage avec la méthode Enigma-César`** : Vous pouvez crypter du texte en utilisant la méthode Enigma-César en spécifiant une clé de cryptage sous forme d'une liste d'entiers.
 
-- **Décryptage avec la méthode de César** : Vous pouvez décrypter du texte crypté avec la méthode de César en spécifiant la même clé de cryptage utilisée pour le cryptage.
+- **`Décryptage avec la méthode de César`** : Vous pouvez décrypter du texte crypté avec la méthode de César en spécifiant la même clé de cryptage utilisée pour le cryptage.
 
-- **Décryptage avec la méthode Enigma-César** : Vous pouvez décrypter du texte crypté avec la méthode Enigma-César en spécifiant la clé de cryptage négative utilisée pour le cryptage.
+- **`Décryptage avec la méthode Enigma-César`** : Vous pouvez décrypter du texte crypté avec la méthode Enigma-César en spécifiant la clé de cryptage négative utilisée pour le cryptage.
 
-## Description des Fonctions du script
+- ****`Décryptage avec la méthode "Brut force César`**** : Dans le cas où vous avez un texte crypté avec la méthode de César dont vous ignorez la clés, choisissez l'option "5". Le script effectuera le décyptage du texte en essayant toutes les clés possibles.
+
+- **`Décryptage avec la méthode "Brut force Enigma-César`** : Dans le cas où vous avez un texte crypté avec la méthode de Enigma-César dont vous ignorez la clés, choisissez l'option "6". Le script effectuera le décyptage du texte en essayant toutes les combinaisons de clés possibles.
+
+## 6. Description des Fonctions du script
 
 ***Les fonctionnalités globales du programme sont les suivantes*** :
 
@@ -61,22 +66,37 @@ Le script propose les options suivantes :
 
 - Choix aléatoire d'un mot parmi une liste fournie par le joueur. Nommez votre fichier : "mots_pendu.txt". Les mots avec accents et caractère spéciaux sont pris en compte par le programme.
 
-********Par ailleur le code est composé principlement de fonctions.****
+***Par ailleur le code est composé principlement de fonctions.***
 
 Ce script nécessite Python et la bibliothèque `fonction.py`. Assurez-vous de télécharger également le fichier `fonction.py` et de le placer dans le même répertoire que le script principal.
 
-- **lire_fichier(fichier_txt)** : Cette fonction prend en entrée le chemin d'un fichier texte et retourne son contenu sous forme d'une seule chaîne de caractères.
-- **modifier_caracteres_speciaux(mot, caracteres_speciaux, caracteres_normaux)** : Cette fonction permet de modifier les caractères spéciaux **'àâèéêëôîïûùüç'** d'un mot en caractère normaux **aaeeeeoiiuuuc**.
-- **separer_mot_en_item_liste(contenu)** : Cette fonction permet de diviser une chaine de caractère en mots individuels en utilisant l'espace comme séparateur.
-- **modifier_majuscules(liste_mots)** : Cette fonction prend en entrée une liste de mots et convertit chaque mot en minuscules.
-- **creer_liste_de_chaque_mot(fichier_texte)** : Cette fonction prend en entrée un fichier texte et retourne une liste contenant chaque mot du fichier.
-- **cryptage_cesar(mot, clef, alphabet)** : Cette fonction prend en entrée un mot et une clé de cryptage, pour retourner le mot crypté par la méthode César.
+- **`lire_fichier(fichier_txt)`** : Cette fonction prend en entrée le chemin d'un fichier texte et retourne son contenu sous forme d'une seule chaîne de caractères.
 
-- **cryptage_enigma_cesar(mot, clef, alphabet)** : Cette fonction prend en entrée un mot et une clé de cryptage, pour retourner le mot crypté par la méthode Enigma-César.
-- **clef_potentielle(texte_crypte, lettre_alphabet, alphabet)** : Cette fonction prend en entrée un texte crypté et retourne la clé de décryptage potentielle.
-- **mot(fichier_txt)** : Cette fonction prend en entrée un fichier texte contenant une liste de mots et retourne une liste contenant chaque ligne du fichier en tant que mot.
+- **`modifier_caracteres_speciaux(mot, caracteres_speciaux, caracteres_normaux)`** : Cette fonction permet de modifier les caractères spéciaux **'àâèéêëôîïûùüç'** d'un mot en caractère normaux **aaeeeeoiiuuuc**.
 
-## Auteurs
+- **`separer_mot_en_item_liste(contenu)`** : Cette fonction permet de diviser une chaine de caractère en mots individuels en utilisant l'espace comme séparateur.
+
+- **`modifier_majuscules(liste_mots)`** : Cette fonction prend en entrée une liste de mots et convertit chaque mot en minuscules.
+
+- **`creer_liste_de_chaque_mot(fichier_texte)`** : Cette fonction prend en entrée un fichier texte et retourne une liste contenant chaque mot du fichier.
+
+- **`cryptage_cesar(mot, clef, alphabet)`** : Cette fonction prend en entrée un mot et une clé de cryptage, pour retourner le mot crypté par la méthode César.
+
+- **`cryptage_enigma_cesar(mot, clef, alphabet)`** : Cette fonction prend en entrée un mot et une clé de cryptage, pour retourner le mot crypté par la méthode Enigma-César.
+
+- **`clef_potentielle(texte_crypte, lettre_alphabet, alphabet)`** : Cette fonction prend en entrée un texte crypté et retourne la clé de décryptage potentielle.
+
+- **`mots_fichier(fichier_txt)`** : Cette fonction prend en entrée un fichier texte contenant une liste de mots et retourne une liste contenant chaque ligne du fichier en tant que mot.
+
+- **`trouver_premier_3_lettres(texte, alphabet)`** : Cette fonction parcourt le texte pour trouver le premier mot composé uniquement de lettres de l'alphabet, d'au moins trois caractères, et le retourne.
+
+- **`mots_en_communs(texte_crypte, base_de_donnee)`** : Cette fonction trouve le nombre de mots communs entre le texte crypté et une base de données de mots populaires.
+
+- **`brut_force_cesar(texte_crypte, alphabet)`** : Cette fonction permet de décrypter par force brute en utilisant la méthode de César. Elle teste toutes les clés possibles afin de trouver la meilleure correspondance avec une liste de mots populaires de la langue française.
+
+- **`brut_force_enigma_cesar(texte_crypte, alphabet)`** : Cette fonction permet de décrypter par force brute en utilisant la méthode Enigma-César. Elle teste toutes les clés possibles afin de trouver la meilleure correspondance avec une liste de mots populaires de la langue française.
+
+## 7. Auteurs
 
 Cyril HELOU
 
