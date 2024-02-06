@@ -94,8 +94,93 @@ def clef_potentielle(texte_crypte, lettre_alphabet, alphabet=list(string.ascii_l
                 return abs(alphabet.index(lettre_alphabet)-alphabet.index(caractere))
 
 
-def mot(fichier_txt):
+def mots_fichier(fichier_txt):
     with open(fichier_txt, 'r', encoding='utf-8') as fichier:
         lignes = fichier.readlines()
         liste_mots = [mot.strip() for mot in lignes]
     return liste_mots
+
+
+def trouver_premier_3_lettres(texte, alphabet):
+    for mot in texte:
+        if len(mot) >= 3:
+            if mot[0] in alphabet and mot[1] in alphabet and mot[2] in alphabet:
+                return mot
+
+
+def clef_potentielle_v2(caractere, lettre_alphabet, alphabet=list(string.ascii_lowercase)):
+    if caractere in alphabet:
+        return abs(alphabet.index(lettre_alphabet)-alphabet.index(caractere))
+
+
+def mots_en_communs(texte_crypte, base_de_donnee):
+    mots_communs = set(texte_crypte) & set(base_de_donnee)
+    return len(mots_communs)
+
+
+def brut_force_cesar(texte_crypte, alphabet=list(string.ascii_lowercase)):
+    mots_populaires = mots_fichier('french.txt')
+    mots_populaires = [mot.lower() for mot in mots_populaires]
+    grande_liste = []
+    toutes_les_clefs = []
+    for lettre in alphabet:
+        clef = clef_potentielle(texte_crypte, lettre)
+        toutes_les_clefs.append(clef)
+        liste_par_clef = []
+        for mot in texte_crypte:
+            mot_decrypte = []
+            for caractere in mot:
+                if caractere in alphabet:
+                    mot_decrypte.append(alphabet[(-clef + alphabet.index(caractere)) % len(alphabet)])
+                else:
+                    mot_decrypte.append(caractere)
+
+            liste_par_clef.append(''.join(mot_decrypte))
+        grande_liste.append(liste_par_clef)
+
+    liste_compteur = []
+    for sous_liste in grande_liste:
+        compteur = 0
+        for mot in sous_liste:
+            if mot in mots_populaires:
+                compteur += 1
+        liste_compteur.append(compteur)
+
+    indice = liste_compteur.index(max(liste_compteur))
+    print(' '.join(grande_liste[indice]))
+    print('la clef était: ', toutes_les_clefs[indice])
+
+
+def brut_force_enigma_cesar(texte_crypte, alphabet=list(string.ascii_lowercase)):
+    mots_populaires = mots_fichier('french.txt')
+    mots_populaires = [mot.lower() for mot in mots_populaires]
+    compteur1 = 0
+    vraies_clefs = []
+    texte_decrypte = []
+    gros_compteur = []
+    for i in range(len(alphabet)):
+        for j in range(len(alphabet)):
+            for k in range(len(alphabet)):
+                clefs = [i, j, k]
+                compteur2 = 0
+                texte_decrypte_potentiel = []
+                for mot in texte_crypte:
+                    mot_decrypte = []
+                    indice = 0
+                    for caractere in mot:
+                        if caractere in alphabet:
+                            mot_decrypte.append(
+                                alphabet[(-clefs[indice % len(clefs)] + alphabet.index(caractere)) % len(alphabet)])
+                            indice += 1
+                        else:
+                            mot_decrypte.append(caractere)
+                    texte_decrypte_potentiel.append(''.join(mot_decrypte))
+                    compteur2 = mots_en_communs(texte_decrypte_potentiel, mots_populaires)
+                if compteur2 > compteur1:
+                    vraies_clefs = clefs
+                    texte_decrypte = texte_decrypte_potentiel
+                    compteur1 = compteur2
+                gros_compteur.append(compteur2)
+    print('Les clef sont', vraies_clefs)
+    print('Le texte décrypté est :')
+    print(' '.join(texte_decrypte))
